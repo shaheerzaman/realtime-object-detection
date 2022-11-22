@@ -5,7 +5,6 @@ import threading
 import urllib.request
 from pathlib import Path
 from typing import List, NamedTuple, Optional
-
 import av
 import cv2
 import matplotlib.pyplot as plt
@@ -50,7 +49,7 @@ def download_file(url, download_to: Path, expected_size=None):
             with urllib.request.urlopen(url) as response:
                 length = int(response.info()["Content-Length"])
                 counter = 0.0
-                MEGABYTES = 2.0 ** 20.0
+                MEGABYTES = 2.0**20.0
                 while True:
                     data = response.read(8192)
                     if not data:
@@ -82,16 +81,16 @@ def main():
 
     pages = {
         "Real time object detection (sendrecv)": app_object_detection,
-        "Real time video transform with simple OpenCV filters (sendrecv)": app_video_filters,  # noqa: E501
-        "Real time audio filter (sendrecv)": app_audio_filter,
-        "Delayed echo (sendrecv)": app_delayed_echo,
-        "Consuming media files on server-side and streaming it to browser (recvonly)": app_streaming,  # noqa: E501
-        "WebRTC is sendonly and images are shown via st.image() (sendonly)": app_sendonly_video,  # noqa: E501
-        "WebRTC is sendonly and audio frames are visualized with matplotlib (sendonly)": app_sendonly_audio,  # noqa: E501
-        "Simple video and audio loopback (sendrecv)": app_loopback,
-        "Configure media constraints and HTML element styles with loopback (sendrecv)": app_media_constraints,  # noqa: E501
-        "Control the playing state programatically": app_programatically_play,
-        "Customize UI texts": app_customize_ui_texts,
+        # "Real time video transform with simple OpenCV filters (sendrecv)": app_video_filters,  # noqa: E501
+        # "Real time audio filter (sendrecv)": app_audio_filter,
+        # "Delayed echo (sendrecv)": app_delayed_echo,
+        # "Consuming media files on server-side and streaming it to browser (recvonly)": app_streaming,  # noqa: E501
+        # "WebRTC is sendonly and images are shown via st.image() (sendonly)": app_sendonly_video,  # noqa: E501
+        # "WebRTC is sendonly and audio frames are visualized with matplotlib (sendonly)": app_sendonly_audio,  # noqa: E501
+        # "Simple video and audio loopback (sendrecv)": app_loopback,
+        # "Configure media constraints and HTML element styles with loopback (sendrecv)": app_media_constraints,  # noqa: E501
+        # "Control the playing state programatically": app_programatically_play,
+        # "Customize UI texts": app_customize_ui_texts,
     }
     page_titles = pages.keys()
 
@@ -103,14 +102,6 @@ def main():
 
     page_func = pages[page_title]
     page_func()
-
-    st.sidebar.markdown(
-        """
----
-<a href="https://www.buymeacoffee.com/whitphx" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="180" height="50" ></a>
-    """,  # noqa: E501
-        unsafe_allow_html=True,
-    )
 
     logger.debug("=== Alive threads ===")
     for thread in threading.enumerate():
